@@ -1,0 +1,25 @@
+{
+    "name": "12-ModuleChallenge-EmployeeTracker",
+    "version": "1.0.0",
+    "description": "",
+    "main": "employeeTracker.js",
+    "scripts": {
+      
+      "start": "node employeeTracker.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey"
+    },
+    "keywords": [],
+    "author": "sam bailey",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/issues"
+    },
+    "homepage": "https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey#readme",
+    "dependencies": {
+      "inquirer": "^8.4.2",
+      "mysql": "^3.6.0",
+    }
+  }
