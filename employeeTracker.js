@@ -2,9 +2,12 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt')
+
 // const inqListInput = require('inquirer-list-input');
-// TODO: i am presented with a FORMATTED TABLE
+
+// DONE: i am presented with a FORMATTED TABLE
 // find a module that will format the table in the console
+const cTable = require('console.table');
 
 // TODO:
 // when i choose to view all departments
@@ -22,11 +25,10 @@ const connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    // run the start function after the connection is made to prompt the user
-    // need to call the prompts here nameOfPrompt();
-    console.log("i am listening on localhost:3001");
-    console.log("press ctrl+c to exit");
 });
+
+// if we manages to connect and start, then tell the user how to quit
+console.log("press ctrl+c to exit\n");
 
 // TODO: required use cases:
 // i am presented with the following options:
