@@ -3,6 +3,12 @@ const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt')
 // const inqListInput = require('inquirer-list-input');
+// TODO: i am presented with a FORMATTED TABLE
+// find a module that will format the table in the console
+
+// TODO:
+// when i choose to view all departments
+// then i am presented with a formatted table showing department names and department ids
 
 inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
 
@@ -21,6 +27,16 @@ connection.connect(function (err) {
     console.log("i am listening on localhost:3001");
     console.log("press ctrl+c to exit");
 });
+
+// TODO: required use cases:
+// i am presented with the following options:
+// view all departments
+// view all roles
+// view all employees
+// add a department
+// add a role
+// add an employee
+// update an employee role
 
 function promptUserAction() {
     inquirer.prompt([
