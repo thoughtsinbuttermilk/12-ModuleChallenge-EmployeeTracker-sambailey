@@ -22,6 +22,6 @@
         "inquirer": "8.2.6",
         "inquirer-list-input": "^0.1.2",
         "inquirer-maxlength-input-prompt": "^1.0.2",
-        "mysql2": "^3.6.0"
+        "mysql2": "^2.1.0"
     }
 }
