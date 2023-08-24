@@ -20,22 +20,22 @@ VALUES
 ("Lead Singer", 170500.00, 6), 
 ("Backup Singer", 160000.00, 6);
 
-INSERT INTO employee (first_name, last_name, role_id)
+INSERT INTO employee (last_name, first_name, role_id, manager_id)
 VALUES 
-("Joplin", "Janice", 1), 
-("King", "Carole", 2), 
-("Franklin", "Aretha", 7),
-("O'Connor", "Sinead", 7), 
-("Smith", "Patty", 5), 
-("Smith", "Bessie", 7), 
-("Bush", "Kate", 4), 
-("Turner", "Tina", 3), 
-("Harry", "Debra", 2),
-("Parton", "Dolly", 7), 
-("Khan", "Chaka", 8),
-("Baker", "LaVerne", 7),
-("Blige", "Mary J.", 8),
-("Ross", "Diana", 1);
+("Joplin", "Janice", 3, 1), 
+("King", "Carole", 2, 1), 
+("Franklin", "Aretha", 7, 1),
+("O'Connor", "Sinead", 7, 3), 
+("Smith", "Patty", 5, 3), 
+("Smith", "Bessie", 7, 1), 
+("Bush", "Kate", 4, 1), 
+("Turner", "Tina", 3, 1), 
+("Harry", "Debra", 2, 1),
+("Parton", "Dolly", 7, 3), 
+("Khan", "Chaka", 8, 3),
+("Baker", "LaVerne", 7, 2),
+("Blige", "Mary J.", 3, 2),
+("Ross", "Diana", 1, 1);
 
 
  
