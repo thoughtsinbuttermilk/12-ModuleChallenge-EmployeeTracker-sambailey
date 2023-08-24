@@ -26,7 +26,14 @@ const connection = mysql.createConnection({
     user: "root",
     password: "BHogn_53",
     database: "employee_tracker"
-})
+});
+
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log("connected as id " + connection.threadId);
+
+    promptUserAction();
+});
 
 // if we manages to connect and start, then tell the user how to quit
 console.log("press ctrl+c to exit\n");
@@ -60,8 +67,8 @@ function promptUserAction() {
         }
 
     ]).then((res) => {
-        console.log(res.userAction);
-        switch (res.userAction) {
+        console.log(res.promptUserAction);
+        switch (res.promptUserAction) {
             case "view all departments":
                 viewAllDepartments();
                 break;
@@ -94,10 +101,20 @@ function promptUserAction() {
     });
 }
 
-process.on('uncaughtException', function (err) {
-    console.log(err);
-  });
+function viewAllDepartments() {
+    // select from the db
+    let query = "SELECT * FROM department";
+    connection.query(query, function(err, res) {
+      if (err) throw err;
+      console.table(res);
+      startScreen();
+    });
+    // show the result to the user (console.table)
+  }
 
-
+// used while debugging, keep this around for a while
+// process.on('uncaughtException', function (err) {
+//     console.log(err);
+// });
 
 promptUserAction();
