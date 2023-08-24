@@ -16,7 +16,9 @@ inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
 const connection = mysql.createConnection({
     host: "8.0.33",
     port: "3306",
+    // your username
     user: "root",
+    // your password
     password: "BHogn_53",
     database: "employee_tracker"
 });
@@ -61,7 +63,7 @@ function promptUserAction() {
                 "exit"
             ]
         }
-    
+
     ]).then((res) => {
         console.log(res.promptUserAction);
         switch (res.promptUserAction) {
@@ -86,9 +88,7 @@ function promptUserAction() {
             case "update an employee role":
                 updateEmployeeRole();
                 break;
-            case "exit":
-                connection.end();
-                break;
+            default: exit();   
         }
 
     }).catch((err) => {
@@ -100,17 +100,16 @@ function promptUserAction() {
 function viewAllDepartments() {
     // select from the db
     let query = "SELECT * FROM department";
-    connection.query(query, function(err, res) {
-      if (err) throw err;
-      console.table(res);
-      startScreen();
+    connection.query(query, function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        promptUserAction();
     });
     // show the result to the user (console.table)
-  }
-
-// used while debugging, keep this around for a while
-// process.on('uncaughtException', function (err) {
-//     console.log(err);
-// });
+}
+function exit() {
+    connection.end();
+    process.exit();
+}
 
 promptUserAction();
