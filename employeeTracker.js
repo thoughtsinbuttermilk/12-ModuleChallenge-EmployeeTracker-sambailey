@@ -1,33 +1,27 @@
 // dependencies
-// for testing purposes only
-// const app = require('express')();
-// const http = require('http').Server();
-// for testing purposes only
-
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
+// for later: limit the console input to the value of the VARCHAR(30) in the db schema
 const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt')
 
 // const inqListInput = require('inquirer-list-input');
 
-// DONE: i am presented with a FORMATTED TABLE
-// find a module that will format the table in the console
+// use case: i am presented with a FORMATTED TABLE
+// DONE: find a module that will format the table in the console
 const cTable = require('console.table');
-
-// TODO:
-// when i choose to view all departments
-// then i am presented with a formatted table showing department names and department ids
 
 inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
 
+// open a connection to the database
 const connection = mysql.createConnection({
     host: "8.0.33",
-    port: "3006",
+    port: "3306",
     user: "root",
     password: "BHogn_53",
     database: "employee_tracker"
 });
 
+// this function will be called when the connection is made to the server
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
@@ -35,7 +29,7 @@ connection.connect(function (err) {
     promptUserAction();
 });
 
-// if we manages to connect and start, then tell the user how to quit
+// tell the user how to quit the application
 console.log("press ctrl+c to exit\n");
 
 // TODO: required use cases:
@@ -48,9 +42,11 @@ console.log("press ctrl+c to exit\n");
 // add an employee
 // update an employee role
 
+// user promopts for the application's required actions
 function promptUserAction() {
     inquirer.prompt([
         {
+            // pick list of options
             name: "userAction",
             type: "list",
             message: "hello. what would you like to do?",
@@ -65,7 +61,7 @@ function promptUserAction() {
                 "exit"
             ]
         }
-
+    
     ]).then((res) => {
         console.log(res.promptUserAction);
         switch (res.promptUserAction) {
