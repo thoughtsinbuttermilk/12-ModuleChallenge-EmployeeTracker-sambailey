@@ -1,4 +1,9 @@
 // dependencies
+// for testing purposes only
+// const app = require('express')();
+// const http = require('http').Server();
+// for testing purposes only
+
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt')
@@ -16,16 +21,12 @@ const cTable = require('console.table');
 inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
 
 const connection = mysql.createConnection({
-    host: "127.0.0.1",
-    port: "3001",
+    host: "8.0.33",
+    port: "3006",
     user: "root",
     password: "BHogn_53",
     database: "employee_tracker"
 })
-
-connection.connect(function (err) {
-    if (err) throw err;
-});
 
 // if we manages to connect and start, then tell the user how to quit
 console.log("press ctrl+c to exit\n");
@@ -92,5 +93,11 @@ function promptUserAction() {
         if (err) throw err;
     });
 }
+
+process.on('uncaughtException', function (err) {
+    console.log(err);
+  });
+
+
 
 promptUserAction();
