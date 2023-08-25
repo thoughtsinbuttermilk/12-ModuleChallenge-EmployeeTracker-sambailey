@@ -14,7 +14,7 @@ inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
 
 // open a connection to the database
 const connection = mysql.createConnection({
-    host: "8.0.33",
+    host: "127.0.0.1",
     port: "3306",
     // your username
     user: "root",
@@ -23,13 +23,14 @@ const connection = mysql.createConnection({
     database: "employee_tracker"
 });
 
-// this function will be called when the connection is made to the server
 connection.connect(function (err) {
     if (err) throw err;
-    console.log("connected as id " + connection.threadId);
+    console.log("connected to employee tracker database as ID " + connection.threadId);
 
     promptUserAction();
 });
+
+// this function will be called when the connection is made to the server
 
 // tell the user how to quit the application
 console.log("press ctrl+c to exit\n");
@@ -44,11 +45,11 @@ console.log("press ctrl+c to exit\n");
 // add an employee
 // update an employee role
 
-// user promopts for the application's required actions
+// user prompts for the application's required actions
 function promptUserAction() {
-    inquirer.prompt([
-        {
-            // pick list of options
+    inquirer.prompt({
+        
+            // user picks from the list of use cases
             name: "userAction",
             type: "list",
             message: "hello. what would you like to do?",
@@ -61,12 +62,12 @@ function promptUserAction() {
                 "add an employee",
                 "update an employee role",
                 "exit"
-            ]
-        }
-
-    ]).then((res) => {
-        console.log(res.promptUserAction);
-        switch (res.promptUserAction) {
+            ],
+            message: "hello. what would you like to do?",
+            name: "option"
+        }).then(function(res) {
+        console.log("we will now:" + res.option);
+        switch (res.option) {
             case "view all departments":
                 viewAllDepartments();
                 break;
@@ -107,6 +108,32 @@ function viewAllDepartments() {
     });
     // show the result to the user (console.table)
 }
+
+function viewAllEmployees() {
+    let query = 
+    `SELECT 
+        employee.id, 
+        employee.first_name, 
+        employee.last_name, 
+        role.title, 
+        department.name AS department, 
+        role.salary, 
+        CONCAT(manager.first_name, ' ', manager.last_name) AS manager
+    FROM employee
+    LEFT JOIN role
+        ON employee.role_id = role.id
+    LEFT JOIN department
+        ON department.id = role.department_id
+    LEFT JOIN employee manager
+        ON manager.id = employee.manager_id`
+  
+    connection.query(query, (err, res)=>{
+      if (err) throw err;
+      console.table(res);
+      promptUserAction();
+    });
+}
+
 function exit() {
     connection.end();
     process.exit();
