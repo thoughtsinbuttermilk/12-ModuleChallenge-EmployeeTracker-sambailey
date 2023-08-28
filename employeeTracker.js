@@ -116,6 +116,9 @@ function viewAllRoles() {
 }
 
 function viewAllEmployees() {
+    // TODO: from the readme
+    // use a separate file that contains functions for performing specific SQL queries you'll need to use
+    // a constructor function or class could be helpful for organizing these
     let query =
         `SELECT 
         employee.id, 
@@ -216,9 +219,36 @@ function addEmployee() {
             }
         ])
         .then(function (answer) {
-
-
             connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.newEmployeeFirstName, answer.newEmployeeLastName, answer.roleID, answer.managerID], function (err, res) {
+                if (err) throw err;
+                console.table(res);
+                promptUserAction();
+            });
+        });
+}
+
+function updateEmployeeRole() {
+    inquirer
+        .prompt([
+            {
+                type: "maxlength-input",
+                maxLength: 30,
+                // TODO: validate names, add last name
+                // let's hope all the employee first names are unique!
+                // let's hope the employee exists!
+                // seriously, this needs to be improved
+                message: "enter the first name of the employee whose you need to update:",
+                name: "employeeUpdate"
+            },
+            {
+                type: "number",
+                maxLength: 1,
+                message: "enter the new role for the employee\na role number from 1-6",
+                name: "updateRole"
+            }
+        ])
+        .then(function (answer) {
+            connection.query('UPDATE employee SET role_id=? WHERE first_name= ?', [answer.updateRole, answer.employeeUpdate], function (err, res) {
                 if (err) throw err;
                 console.table(res);
                 promptUserAction();
