@@ -304,7 +304,7 @@ function removeEmployee() {
     });
 }
 
-// exit the application
+// close the connection, exit the application
 function exit() {
     connection.end();
     process.exit();
