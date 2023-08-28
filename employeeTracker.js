@@ -38,26 +38,19 @@ cfonts.say('hello!\ni am the\nemployee\ntracker', {
 });
 
 // tell the user how to quit the application
-console.log("\npress ctrl+c to exit\n");
+console.log("\nto exit the application\nselect exit from the menu\nor press ctrl+c\n");
 
-// TODO: required use cases:
-// i am presented with the following options:
-// view all departments
-// view all roles
-// view all employees
-// add a department
-// add a role
-// add an employee
-// update an employee role
+// start user interaction
+// promptUserAction();
 
 // user prompts for the application's required actions
 function promptUserAction() {
-    inquirer.prompt({
-        
-            // user picks from the list of use cases
+    inquirer.prompt({       
+            // user picks from the list actions
             name: "userAction",
             type: "list",
             message: "hello. what would you like to do?",
+            name: "option"
             choices: [
                 prompts.viewAllDepartments,
                 prompts.viewAllRoles,
@@ -68,8 +61,6 @@ function promptUserAction() {
                 prompts.updateEmployeeRole,
                 prompts.exit
             ],
-            message: "hello. what would you like to do?",
-            name: "option"
         }).then(function(res) {
         console.log("we will now:" + res.option);
         switch (res.option) {
