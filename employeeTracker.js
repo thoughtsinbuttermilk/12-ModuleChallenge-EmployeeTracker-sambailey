@@ -3,8 +3,10 @@ const mysql = require('mysql2');
 const inquirer = require('inquirer');
 
 // connect to the database
-    // return connection;
 const connection = require('./conections/connections');
+
+// message prompts for user interaction
+const prompts = require("./messagePrompts");
 
 // for later: limit the console input to the value of the VARCHAR(30) in the db schema
 const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt')
@@ -39,14 +41,16 @@ function promptUserAction() {
             type: "list",
             message: "hello. what would you like to do?",
             choices: [
-                "view all departments",
-                "view all roles",
-                "view all employees",
-                "add a department",
-                "add a role",
-                "add an employee",
-                "update an employee role",
-                "exit"
+                prompts.viewAllDepartments,
+
+                // "view all departments",
+                // "view all roles",
+                // "view all employees",
+                // "add a department",
+                // "add a role",
+                // "add an employee",
+                // "update an employee role",
+                // "exit"
             ],
             message: "hello. what would you like to do?",
             name: "option"
