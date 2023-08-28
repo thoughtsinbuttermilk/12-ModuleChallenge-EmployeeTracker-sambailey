@@ -194,31 +194,31 @@ function addEmployee() {
                 type: "maxlength-input",
                 maxLength: 30,
                 message: "enter the first name of the employee:",
-                name: "eeFirstName"
+                name: "newEmployeeFirstName"
             },
             {
                 type: "maxlength-input",
                 maxLength: 30,
                 message: "enter the last name of the employee:",
-                name: "eeLastName"
+                name: "newEmployeeLastName"
             },
             {
-                type: "maxlength-input",
-                maxLength: 30,
-                message: "enter the role number of the employee:",
+                type: "number",
+                maxLength: 1,
+                message: "enter the role number of the employee:\na role number from 1-6",
                 name: "roleID"
             },
             {
-                type: "maxlength-input",
-                maxLength: 30,
-                message: "enter the manager id for the new employee:",
+                type: "number",
+                maxLength: 1,
+                message: "enter the manager id for the new employee:\n a manager id from 1-4",
                 name: "managerID"
             }
         ])
         .then(function (answer) {
 
 
-            connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.eeFirstName, answer.eeLastName, answer.roleID, answer.managerID], function (err, res) {
+            connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.newEmployeeFirstName, answer.newEmployeeLastName, answer.roleID, answer.managerID], function (err, res) {
                 if (err) throw err;
                 console.table(res);
                 promptUserAction();
