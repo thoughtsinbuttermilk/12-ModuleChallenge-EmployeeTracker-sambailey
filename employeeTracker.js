@@ -140,6 +140,22 @@ function viewAllEmployees() {
     });
 }
 
+function addDepartment() {
+    inquirer.prompt({
+        // VARCHAR(30) and NOT NULL so using maklength-input to constrain user input
+        type: "maxlength-input",
+        message: "enter the name of the new department",
+        name: "departmentName",
+        maxLength: 30
+    }).then(function(answer){
+        connection.query("INSERT INTO department (name) VALUES (?)", [answer.departmentName] , function(err, res) {
+            if (err) throw err;
+            console.table(res)
+            promptUserAction()
+    })
+    })
+}
+
 function exit() {
     connection.end();
     process.exit();
