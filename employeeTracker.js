@@ -23,18 +23,18 @@ const cTable = require('console.table');
 inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
 
 cfonts.say('hello!\ni am the\nemployee\ntracker', {
-	font: 'simpleBlock',        
-	align: 'left',              
-	colors: ['blue'],           
-	background: 'transparent',  
-	letterSpacing: 1,           
-	lineHeight: 1,              
-	space: true,                
-    maxLength: '0',             
-    gradient: false,            
-	independentGradient: false, 
-	transitionGradient: false,  
-	env: 'node'                 
+    font: 'simpleBlock',
+    align: 'left',
+    colors: ['blue'],
+    background: 'transparent',
+    letterSpacing: 1,
+    lineHeight: 1,
+    space: true,
+    maxLength: '0',
+    gradient: false,
+    independentGradient: false,
+    transitionGradient: false,
+    env: 'node'
 });
 
 // tell the user how to quit the application
@@ -46,23 +46,23 @@ console.log("\nto exit the application\nselect exit from the menu\nor press ctrl
 // user prompts for the application's required actions
 // not using arrow functions because i want to refactor and modularize the code later
 function promptUserAction() {
-    inquirer.prompt({       
-            // user picks from the list actions
-            name: "userAction",
-            type: "list",
-            message: "hello. what would you like to do?",
-            name: "option",
-            choices: [
-                prompts.viewAllDepartments,
-                prompts.viewAllRoles,
-                prompts.viewAllEmployees,
-                prompts.addDepartment,
-                prompts.addRole,
-                prompts.addEmployee,
-                prompts.updateEmployeeRole,
-                prompts.exit
-            ],
-        }).then(function(res) {
+    inquirer.prompt({
+        // user picks from the list actions
+        name: "userAction",
+        type: "list",
+        message: "hello. what would you like to do?",
+        name: "option",
+        choices: [
+            prompts.viewAllDepartments,
+            prompts.viewAllRoles,
+            prompts.viewAllEmployees,
+            prompts.addDepartment,
+            prompts.addRole,
+            prompts.addEmployee,
+            prompts.updateEmployeeRole,
+            prompts.exit
+        ],
+    }).then(function (res) {
         console.log("\nwe will now:\n" + res.option + "\n");
         switch (res.option) {
             case "view all departments":
@@ -86,7 +86,7 @@ function promptUserAction() {
             case "update an employee role":
                 updateEmployeeRole();
                 break;
-            default: exit();   
+            default: exit();
         }
 
     }).catch((err) => {
@@ -108,16 +108,16 @@ function viewAllDepartments() {
 function viewAllRoles() {
     // select from the db
     let query = "SELECT * FROM role";
-    connection.query(query, function(err, res) {
-      if (err) throw err;
-      console.table(res);
-      promptUserAction();
+    connection.query(query, function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        promptUserAction();
     });
-  }
+}
 
 function viewAllEmployees() {
-    let query = 
-    `SELECT 
+    let query =
+        `SELECT 
         employee.id, 
         employee.first_name, 
         employee.last_name, 
@@ -132,28 +132,59 @@ function viewAllEmployees() {
         ON department.id = role.department_id
     LEFT JOIN employee manager
         ON manager.id = employee.manager_id`
-  
-    connection.query(query, (err, res)=>{
-      if (err) throw err;
-      console.table(res);
-      promptUserAction();
+
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        promptUserAction();
     });
 }
 
 function addDepartment() {
     inquirer.prompt({
-        // VARCHAR(30) and NOT NULL so using maklength-input to constrain user input
+        // VARCHAR(30) and NOT NULL so using maxlength-input to constrain user input
         type: "maxlength-input",
+        maxLength: 30,
         message: "enter the name of the new department",
-        name: "departmentName",
-        maxLength: 30
-    }).then(function(answer){
-        connection.query("INSERT INTO department (name) VALUES (?)", [answer.departmentName] , function(err, res) {
+        name: "departmentName"
+    }).then(function (answer) {
+        connection.query("INSERT INTO department (name) VALUES (?)", [answer.departmentName], function (err, res) {
             if (err) throw err;
             console.table(res)
             promptUserAction()
+        })
     })
-    })
+}
+
+function addRole() {
+    inquirer
+        .prompt([
+            {
+                type: "maxlength-input",
+                maxLength: 30,
+                message: "enter the name of the new role:",
+                name: "roleName"
+            },
+            {
+                type: "maxlength-input",
+                maxLength: 30,
+                message: "enter the salary of the new role:",
+                name: "salaryTotal"
+            },
+            {
+                type: "maxlength-input",
+                maxLength: 30,
+                message: "enter the department id of the new role?",
+                name: "departmentID"
+            }
+        ])
+        .then(function (answer) {
+            connection.query("INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)", [answer.roleName, answer.salaryTotal, answer.departmentID], function (err, res) {
+                if (err) throw err;
+                console.table(res);
+                promptUserAction();
+            });
+        });
 }
 
 function exit() {
