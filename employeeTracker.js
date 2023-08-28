@@ -42,15 +42,13 @@ function promptUserAction() {
             message: "hello. what would you like to do?",
             choices: [
                 prompts.viewAllDepartments,
-
-                // "view all departments",
-                // "view all roles",
-                // "view all employees",
-                // "add a department",
-                // "add a role",
-                // "add an employee",
-                // "update an employee role",
-                // "exit"
+                prompts.viewAllRoles,
+                prompts.viewAllEmployees,
+                prompts.addDepartment,
+                prompts.addRole,
+                prompts.addEmployee,
+                prompts.updateEmployeeRole,
+                prompts.exit
             ],
             message: "hello. what would you like to do?",
             name: "option"
