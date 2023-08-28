@@ -266,43 +266,43 @@ function updateEmployeeRole() {
 }
 
 // get the list of employees so the user can select which one to remove
-function getEmployeeForDelete(employee){  
+function getEmployeeForDelete(employee) {
     inquirer
-      .prompt([
-        {
-          type: "list",
-          name: "employee",
-          message: "employee to be removed: ",
-          choices: employee
-        }
-      ]).then((res)=>{
-        let query = `DELETE FROM employee WHERE ?`;
-        connection.query(query, { id: res.employee },(err, res)=>{
-          if(err) throw err;
-          promptUserAction();
+        .prompt([
+            {
+                type: "list",
+                name: "employee",
+                message: "employee to be removed: ",
+                choices: employee
+            }
+        ]).then((res) => {
+            let query = `DELETE FROM employee WHERE ?`;
+            connection.query(query, { id: res.employee }, (err, res) => {
+                if (err) throw err;
+                promptUserAction();
+            });
         });
-      });
-  }
+}
 
 // remove the employee from the database
 function removeEmployee() {
     let query =
-    `SELECT
+        `SELECT
         employee.id, 
         employee.first_name, 
         employee.last_name
     FROM employee`
-  
-    connection.query(query,(err, res)=>{
-      if(err)throw err;
-      const employee = res.map(({ id, first_name, last_name }) => ({
-        value: id,
-        name: `${id} ${first_name} ${last_name}`
-      }));
-      console.table(res);
-      getEmployeeForDelete(employee);
+
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        const employee = res.map(({ id, first_name, last_name }) => ({
+            value: id,
+            name: `${id} ${first_name} ${last_name}`
+        }));
+        console.table(res);
+        getEmployeeForDelete(employee);
     });
-  }
+}
 
 // exit the application
 function exit() {
