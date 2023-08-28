@@ -44,13 +44,14 @@ console.log("\nto exit the application\nselect exit from the menu\nor press ctrl
 // promptUserAction();
 
 // user prompts for the application's required actions
+// not using arrow functions because i want to refactor and modularize the code later
 function promptUserAction() {
     inquirer.prompt({       
             // user picks from the list actions
             name: "userAction",
             type: "list",
             message: "hello. what would you like to do?",
-            name: "option"
+            name: "option",
             choices: [
                 prompts.viewAllDepartments,
                 prompts.viewAllRoles,
@@ -62,7 +63,7 @@ function promptUserAction() {
                 prompts.exit
             ],
         }).then(function(res) {
-        console.log("we will now:" + res.option);
+        console.log("\nwe will now:\n" + res.option + "\n");
         switch (res.option) {
             case "view all departments":
                 viewAllDepartments();
@@ -102,8 +103,17 @@ function viewAllDepartments() {
         console.table(res);
         promptUserAction();
     });
-    // show the result to the user (console.table)
 }
+
+function viewAllRoles() {
+    // select from the db
+    let query = "SELECT * FROM role";
+    connection.query(query, function(err, res) {
+      if (err) throw err;
+      console.table(res);
+      promptUserAction();
+    });
+  }
 
 function viewAllEmployees() {
     let query = 
