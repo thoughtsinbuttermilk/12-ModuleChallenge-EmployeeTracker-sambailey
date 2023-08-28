@@ -1,6 +1,9 @@
 // dependencies
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
+// a silly little command line tool for sexy ANSI fonts in the console
+// https://www.npmjs.com/package/cfonts
+const cfonts = require('cfonts');
 
 // connect to the database
 const connection = require('./conections/connections');
@@ -19,8 +22,23 @@ const cTable = require('console.table');
 
 inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
 
+cfonts.say('hello!\ni am the\nemployee\ntracker', {
+	font: 'simpleBlock',        
+	align: 'left',              
+	colors: ['blue'],           
+	background: 'transparent',  
+	letterSpacing: 1,           
+	lineHeight: 1,              
+	space: true,                
+    maxLength: '0',             
+    gradient: false,            
+	independentGradient: false, 
+	transitionGradient: false,  
+	env: 'node'                 
+});
+
 // tell the user how to quit the application
-console.log("press ctrl+c to exit\n");
+console.log("\npress ctrl+c to exit\n");
 
 // TODO: required use cases:
 // i am presented with the following options:
