@@ -187,6 +187,45 @@ function addRole() {
         });
 }
 
+function addEmployee() {
+    inquirer
+        .prompt([
+            {
+                type: "maxlength-input",
+                maxLength: 30,
+                message: "enter the first name of the employee:",
+                name: "eeFirstName"
+            },
+            {
+                type: "maxlength-input",
+                maxLength: 30,
+                message: "enter the last name of the employee:",
+                name: "eeLastName"
+            },
+            {
+                type: "maxlength-input",
+                maxLength: 30,
+                message: "enter the role number of the employee:",
+                name: "roleID"
+            },
+            {
+                type: "maxlength-input",
+                maxLength: 30,
+                message: "enter the manager id for the new employee:",
+                name: "managerID"
+            }
+        ])
+        .then(function (answer) {
+
+
+            connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.eeFirstName, answer.eeLastName, answer.roleID, answer.managerID], function (err, res) {
+                if (err) throw err;
+                console.table(res);
+                promptUserAction();
+            });
+        });
+}
+
 function exit() {
     connection.end();
     process.exit();
