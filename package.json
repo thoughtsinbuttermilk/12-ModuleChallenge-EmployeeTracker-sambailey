@@ -21,7 +21,6 @@
         "cfonts": "^3.2.0",
         "console.table": "^0.10.0",
         "inquirer": "8.2.6",
-        "inquirer-list-input": "^0.1.2",
         "inquirer-maxlength-input-prompt": "^1.0.2",
         "mysql2": "^2.1.0"
     }
