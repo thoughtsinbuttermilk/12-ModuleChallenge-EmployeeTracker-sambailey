@@ -1,6 +1,11 @@
 // dependencies
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
+
+// connect to the database
+    // return connection;
+const connection = require('./conections/connections');
+
 // for later: limit the console input to the value of the VARCHAR(30) in the db schema
 const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt')
 
@@ -11,26 +16,6 @@ const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt')
 const cTable = require('console.table');
 
 inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
-
-// open a connection to the database
-const connection = mysql.createConnection({
-    host: "127.0.0.1",
-    port: "3306",
-    // your username
-    user: "root",
-    // your password
-    password: "BHogn_53",
-    database: "employee_tracker"
-});
-
-connection.connect(function (err) {
-    if (err) throw err;
-    console.log("connected to employee tracker database as ID " + connection.threadId);
-
-    promptUserAction();
-});
-
-// this function will be called when the connection is made to the server
 
 // tell the user how to quit the application
 console.log("press ctrl+c to exit\n");
