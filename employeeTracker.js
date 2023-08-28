@@ -11,17 +11,17 @@ const connection = require('./conections/connections');
 // message prompts for user interaction
 const prompts = require("./messagePrompts");
 
-// for later: limit the console input to the value of the VARCHAR(30) in the db schema
+// limit the console input to the value of the VARCHAR(30) in the db schema
 const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt')
-
-// const inqListInput = require('inquirer-list-input');
 
 // use case: i am presented with a FORMATTED TABLE
 // DONE: find a module that will format the table in the console
 const cTable = require('console.table');
 
+// register maxlength function
 inquirer.registerPrompt('maxlength-input', MaxLengthInputPrompt);
 
+// create the start screen
 cfonts.say('hello!\ni am the\nemployee\ntracker', {
     font: 'simpleBlock',
     align: 'left',
@@ -40,9 +40,6 @@ cfonts.say('hello!\ni am the\nemployee\ntracker', {
 // tell the user how to quit the application
 console.log("\nto exit the application\nselect exit from the menu\nor press ctrl+c\n");
 
-// start user interaction
-// promptUserAction();
-
 // user prompts for the application's required actions
 // not using arrow functions because i want to refactor and modularize the code later
 function promptUserAction() {
@@ -60,12 +57,14 @@ function promptUserAction() {
             prompts.addRole,
             prompts.addEmployee,
             prompts.updateEmployeeRole,
+            prompts.removeEmployee,
             prompts.exit
         ],
     }).then(function (res) {
         console.log("\nwe will now:\n" + res.option + "\n");
         switch (res.option) {
             case "view all departments":
+                // call the function viewAllDepartments()
                 viewAllDepartments();
                 break;
             case "view all roles":
@@ -86,6 +85,9 @@ function promptUserAction() {
             case "update an employee role":
                 updateEmployeeRole();
                 break;
+            case "remove an employee from the database":
+                removeEmployee();
+                break;
             default: exit();
         }
 
@@ -95,6 +97,7 @@ function promptUserAction() {
     });
 }
 
+// view all departments
 function viewAllDepartments() {
     // select from the db
     let query = "SELECT * FROM department";
@@ -105,6 +108,7 @@ function viewAllDepartments() {
     });
 }
 
+// view all roles
 function viewAllRoles() {
     // select from the db
     let query = "SELECT * FROM role";
@@ -115,6 +119,7 @@ function viewAllRoles() {
     });
 }
 
+// view all employees
 function viewAllEmployees() {
     // TODO: from the readme
     // use a separate file that contains functions for performing specific SQL queries you'll need to use
@@ -143,6 +148,7 @@ function viewAllEmployees() {
     });
 }
 
+// add new department
 function addDepartment() {
     inquirer.prompt({
         // VARCHAR(30) and NOT NULL so using maxlength-input to constrain user input
@@ -159,6 +165,7 @@ function addDepartment() {
     })
 }
 
+// add new role
 function addRole() {
     inquirer
         .prompt([
@@ -190,6 +197,7 @@ function addRole() {
         });
 }
 
+// add new employee
 function addEmployee() {
     inquirer
         .prompt([
@@ -227,6 +235,7 @@ function addEmployee() {
         });
 }
 
+// update existing employee role
 function updateEmployeeRole() {
     inquirer
         .prompt([
@@ -256,9 +265,50 @@ function updateEmployeeRole() {
         });
 }
 
+// get the list of employees so the user can select which one to remove
+function getEmployeeForDelete(employee) {
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                name: "employee",
+                message: "employee to be removed: ",
+                choices: employee
+            }
+        ]).then((res) => {
+            let query = `DELETE FROM employee WHERE ?`;
+            connection.query(query, { id: res.employee }, (err, res) => {
+                if (err) throw err;
+                promptUserAction();
+            });
+        });
+}
+
+// remove the employee from the database
+function removeEmployee() {
+    let query =
+        `SELECT
+        employee.id, 
+        employee.first_name, 
+        employee.last_name
+    FROM employee`
+
+    connection.query(query, (err, res) => {
+        if (err) throw err;
+        const employee = res.map(({ id, first_name, last_name }) => ({
+            value: id,
+            name: `${id} ${first_name} ${last_name}`
+        }));
+        console.table(res);
+        getEmployeeForDelete(employee);
+    });
+}
+
+// exit the application
 function exit() {
     connection.end();
     process.exit();
 }
 
+// start the application
 promptUserAction();

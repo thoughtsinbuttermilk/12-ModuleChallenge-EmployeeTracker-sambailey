@@ -6,6 +6,7 @@ const promptMessages = {
     addRole: "add a role",
     addEmployee: "add an employee",
     updateEmployeeRole: "update an employee role",
+    removeEmployee: "remove an employee from the database",
     exit: "exit"
 };
 
