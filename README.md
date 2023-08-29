@@ -1,184 +1,164 @@
-# 12 SQL: Employee Tracker
+# 12 ModuleChallenge EmployeeTracker sambailey
 
-## Your Task
+Northwestern Bootcamp challenge week 12
 
-Developers frequently have to create interfaces that allow non-developers to easily view and interact with information stored in databases. These interfaces are called **content management systems (CMS)**. Your assignment this week is to build a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Because this Challenge will require the use of the `Inquirer` package, ensure that you install and use Inquirer version 8.2.4. To do so, use the following command in your project folder: `npm i inquirer@8.2.4`.
+![markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
 
-Because this application won’t be deployed, you’ll also need to create a walkthrough video that demonstrates its functionality and all of the following acceptance criteria being met. You’ll need to submit a link to the video and add it to the README of your project.
+![javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-## User Story
+![node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 
-```md
-AS A business owner
-I WANT to be able to view and manage the departments, roles, and employees in my company
-SO THAT I can organize and plan my business
-```
+![npm](https://img.shields.io/npm/v/npm.svg?logo=npm)
 
-## Acceptance Criteria
+# Table of Contents
 
-```md
-GIVEN a command-line application that accepts user input
-WHEN I start the application
-THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-WHEN I choose to view all departments
-THEN I am presented with a formatted table showing department names and department ids
-WHEN I choose to view all roles
-THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-WHEN I choose to view all employees
-THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-WHEN I choose to add a department
-THEN I am prompted to enter the name of the department and that department is added to the database
-WHEN I choose to add a role
-THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
-WHEN I choose to add an employee
-THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
-WHEN I choose to update an employee role
-THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
-```
+- [12 ModuleChallenge EmployeeTracker sambailey](#12-modulechallenge-employeetracker-sambailey)
+- [Table of Contents](#table-of-contents)
+  - [Project description](#project-description)
+  - [Application functionality](#application-functionality)
+  - [Technology used](#technology-used)
+  - [Installation, usage instructions and known issues](#installation-usage-instructions-and-known-issues)
+  - [Testing](#testing)
+  - [Video walkthrough](#video-walkthrough)
+  - [Credits and notes for the graders](#credits-and-notes-for-the-graders)
 
-## Mock-Up
+## Project description
 
-The following video shows an example of the application being used from the command line:
+The intent of this project was to build a simple, command line interface to an employee database. 
 
-[![A video thumbnail shows the command-line employee management application with a play button overlaying the view.](./Assets/12-sql-homework-video-thumbnail.png)](https://2u-20.wistia.com/medias/2lnle7xnpk)
+## Application functionality
 
-## Getting Started
+When the application is run from the command line, the user can:
 
-This Challenge will require a video submission. Refer to the [Fullstack Blog Video Submission Guide](https://coding-boot-camp.github.io/full-stack/computer-literacy/video-submission-guide) for additional guidance on creating a video.
+• view all departments
 
-You’ll need to use the [MySQL2 package](https://www.npmjs.com/package/mysql2) to connect to your MySQL database and perform queries, and the [Inquirer package](https://www.npmjs.com/package/inquirer/v/8.2.4) to interact with the user via the command line.
+• view all roles
 
-**Important**: You will be committing a file that contains your database credentials. Make sure that your MySQL password is not used for any other personal accounts, because it will be visible on GitHub. In upcoming lessons, you will learn how to better secure this password, or you can start researching npm packages now that could help you.
+• view all employees
 
-You might also want to make your queries asynchronous. MySQL2 exposes a `.promise()` function on Connections to upgrade an existing non-Promise connection to use Promises. To learn more and make your queries asynchronous, refer to the [npm documentation on MySQL2](https://www.npmjs.com/package/mysql2).
+• add a new department
 
-Design the database schema as shown in the following image:
+• add a new role
 
-![Database schema includes tables labeled “employee,” role,” and “department.”](./Assets/12-sql-homework-demo-01.png)
+• add a new employee
 
-As the image illustrates, your schema should contain the following three tables:
+• update an employee's role
 
-* `department`
+• remove an employee from the database
 
-    * `id`: `INT PRIMARY KEY`
+• exit the application
 
-    * `name`: `VARCHAR(30)` to hold department name
+## Technology used
 
-* `role`
+The application was built using:
 
-    * `id`: `INT PRIMARY KEY`
+[node.js, v20.5.0](https://nodejs.org/en), an asynchronous, event-driven JavaScript runtime designed to build scalable network applications
 
-    * `title`: `VARCHAR(30)` to hold role title
+[MySql, v2.1.0](https://dev.mysql.com/doc/refman/8.1/en/), the world's *most popular* open source database
 
-    * `salary`: `DECIMAL` to hold role salary
+[npm's inquirer package, v8.2.6](https://www.npmjs.com/package/inquirer), including the list-input feature and maxlength-input method
 
-    * `department_id`: `INT` to hold reference to department role belongs to
+[npm's cfonts package, v3.2.0](https://www.npmjs.com/package/cfonts), a silly little command line tool for *sexy* ANSI fonts in the console
 
-* `employee`
+[npm's console table package, v0.10.0](https://www.npmjs.com/package/console.table), supports passing multiple strings and arrays in a single console.table call; each argument will be formatted and printed separately on new line
 
-    * `id`: `INT PRIMARY KEY`
+## Installation, usage instructions and known issues
 
-    * `first_name`: `VARCHAR(30)` to hold employee first name
+<details>
+<summary> Expand for installation and usage instructions</summary>
 
-    * `last_name`: `VARCHAR(30)` to hold employee last name
+Users or contributors can run the application locally or in a hosted environment: 
 
-    * `role_id`: `INT` to hold reference to employee role
+1.  **Clone the repository, run the application using the command line**
 
-    * `manager_id`: `INT` to hold reference to another employee that is the manager of the current employee (`null` if the employee has no manager)
+    • Clone the repository: `git@github.com:thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey.git`
 
-You might want to use a separate file that contains functions for performing specific SQL queries you'll need to use. A constructor function or class could be helpful for organizing these. You might also want to include a `seeds.sql` file to pre-populate your database, making the development of individual features much easier.
+    • Install required frameworks, dependencies and packages by opening a terminal instance and running `npm install`
 
-## Bonus
+    • [Open connections.js](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/employeeManagement/conections/connections.js) and add your SQL username, if not root, and password
 
-Try to add some additional functionality to your application, such as the ability to do the following:
+    • Open the sources in your favorite code editor and use your favorite tool to open a connection to you MySql server
 
-* Update employee managers.
+    • [Open and execute the schema](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/2998f381bef1e6509b0e622bc35c9a5abb662197/db/schema.sql)
 
-* View employees by manager.
+    • [Open the seeds file and seed the database with the initial values](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/2998f381bef1e6509b0e622bc35c9a5abb662197/db/seeds.sql)
 
-* View employees by department.
+    • In the `terminal`, navigate to the project directory where you cloned the sources, and run `npm start`
+    
+    • After you admire the super duper cool 'splash screen', follow the prompts 
 
-* Delete departments, roles, and employees.
+    • Select `exit` or press `control+c` to close the application
 
-* View the total utilized budget of a department&mdash;in other words, the combined salaries of all employees in that department.
+2. **Usage instructions**
+    
+    After the application makes a successful connection to the database and is running in the command line, you can select an option from the list to view or update the database:
 
-## Grading Requirements
+    **main menu**
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+    *Expected behavior:* After running `npm start` in  the command line, the user should be presented with the [the super duper cool 'splash screen'!!!](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/01-splashscreen.png) and the application's [main menu](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/02-mainmenu.png)
 
-This Challenge is graded based on the following criteria:
+    **view all departments**
 
-### Deliverables: 10%
+    *Expected behavior:* Select `view all departments` and you will be presented with the [default departments](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/03-viewalldepartments.png) inserted into the database.
 
-* Your GitHub repository containing your application code.
+    **view all roles**
+    
+    *Expected behavior:* Select `view all roles` and you will be presented with the [default roles](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/04-viewallroles.png) inserted into the database.
 
-### Walkthrough Video: 27%
+    **view all employees**
+    
+    *Expected behavior:* Select `view all employees` and you will be presented with the [default roles](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/05-viewallemployees.png) inserted into the database.
 
-* A walkthrough video that demonstrates the functionality of the employee tracker must be submitted, and a link to the video should be included in your README file.
+    **add a new department**
+    
+    *Expected behavior:* Select `add department` and you [prompted for the department name](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/06-addadepartment-INTERNS.png), after pressing enter the new department will be added to the database [intern department inserted into the database](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/07-adddepartment-RESULT.png).
 
-* The walkthrough video must show all of the technical acceptance criteria being met.
+    **add a new role**
 
-* The walkthrough video must demonstrate how a user would invoke the application from the command line.
+    *Expected behavior:* Select `add role` and you [prompted for the new role's name, salary and department id](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/08-addarole.png), after entering the data for the  new role, it will be added to the database [social media manager role, salary and id inserted into the database](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/09-addarole-RESULT.png).
 
-* The walkthrough video must demonstrate a functional menu with the options outlined in the acceptance criteria.
+    **add an employee**
 
-### Technical Acceptance Criteria: 40%
+    *Expected behavior:* Select `add an employee` and you [prompted for the employee's first name, last name, the role number, and manager id](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/10-addemployee.png), after entering the data for the  new role, it will be added to the database [new employee "Linda Ronstadt" added to the database](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/11-addemployee-RESULT.png).
 
-* Satisfies all of the preceding acceptance criteria plus the following:
+    **update an employee's role**
 
-    * Uses the [Inquirer package](https://www.npmjs.com/package/inquirer/v/8.2.4).
+    *Expected behavior:* Select `update an employee role` and you [prompted for the employee's first name and new role number](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/12-updateemployeerole.png), after entering the data for the  new role, it will be added to the database [employee Linda Ronstadt, formerly an Auditor, is now a Studio Engineer ](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/13-updateemployeerole-RESULT.png).
 
-    * Uses the [MySQL2 package](https://www.npmjs.com/package/mysql2) to connect to a MySQL database.
+    **remove an employee from the database**
 
-* Follows the table schema outlined in the Challenge instructions.
+    *Expected behavior:* Select `remove an employee from the database` and you [presented with a list of current employees](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/14-removeemployee.png), after selecting the employee to remove, the employee will be removed from the database [the employee "Mary J. Blige" has been removed from the database](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/15-removeemployee-RESULT.png).
 
-### Repository Quality: 13%
+    **exit the application**
 
-* Repository has a unique name.
+    *Expected behavior:* [Select 'exit'](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/16-exit.png), after pressing "enter" the connection to the database will be closed and [the application will stop running](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/17-exit-RESULT.png).
 
-* Repository follows best practices for file structure and naming conventions.
 
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+    ***Known issues***
 
-* Repository contains multiple descriptive commit messages.
+    • When the application starts, the first message displayed in the console is duplicated.
+    
+    • Fields which require numeric values are not being validated; the application will throw if a non-numeric value is entered.
+    
+    • More generally, new data entered into the database is not validated.
+    
+    • I have only enabled support for the `delete employee` feature listed in the project "bonus" section; the other "bonus" features have not been implemented.
 
-* Repository contains a high-quality README with description and a link to a walkthrough video.
+    </details>
 
-### Application Quality 10%
+## Testing
 
-* The application user experience is intuitive and easy to navigate.
+The 1.0 version of this application does not have any unit tests.
 
-### Bonus
+## Video walkthrough
 
-Fulfilling any of the following can add up to 20 points to your grade. Note that the highest grade you can achieve is still 100:
 
-* Application allows users to update employee managers (2 points).
+Please see [this video](hhttps://drive.google.com/file/d/1-Y6Jux-_2rikyk2s2DbqWJxlQY6lQGKf/view?usp=sharing) for a demonstration of running the application and using the features.
 
-* Application allows users to view employees by manager (2 points).
+## Credits and notes for the graders
 
-* Application allows users to view employees by department (2 points).
+I would like to thank my Northwestern Bootcamp instructor, [NikkiTheBugSlayer](https://github.com/NikkiTheBugSlayer) for her exceptional investments to ensure our cohort is able to understand and learn the concepts taught during this coursework. and our teaching assistants for your review of this assignment.  _Thank-you._
 
-* Application allows users to delete departments, roles, and employees (2 points for each).
-
-* Application allows users to view the total utilized budget of a department&mdash;in other words, the combined salaries of all employees in that department (8 points).
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* A walkthrough video demonstrating the functionality of the application.
-
-* The URL of the GitHub repository, with a unique name and a README describing the project.
-
-- - -
-© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+Grading team: I appreciate and look forward to your feeddback! 
