@@ -19,7 +19,7 @@ Northwestern Bootcamp challenge week 12
   - [Project description](#project-description)
   - [Application functionality](#application-functionality)
   - [Technology used](#technology-used)
-  - [Installation, usage instructions and known issue](#installation-usage-instructions-and-known-issue)
+  - [Installation, usage instructions and known issues](#installation-usage-instructions-and-known-issues)
   - [Testing](#testing)
   - [Video walkthroughs](#video-walkthroughs)
   - [Screen captures](#screen-captures)
@@ -65,7 +65,7 @@ The application was built using:
 
 [npm's console table package, v0.10.0](https://www.npmjs.com/package/console.table), supports passing multiple strings and arrays in a single console.table call; each argument will be formatted and printed separately on new line
 
-## Installation, usage instructions and known issue
+## Installation, usage instructions and known issues
 
 <details>
 <summary> Expand for installation and usage instructions</summary>
@@ -80,7 +80,15 @@ Users or contributors can run the application locally or in a hosted environment
 
     • [Open connections.js](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/employeeManagement/conections/connections.js) and add your SQL username, if not root, and password
 
-    • In the `terminal`, run `npm start`, after you admire the super duper cool 'splash screen', follow the prompts 
+    • Open the sources in your favorite code editor and use your favorite tool to open a connection to you MySql server
+
+    • [Open and execute the schema](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/2998f381bef1e6509b0e622bc35c9a5abb662197/db/schema.sql)
+
+    • [Open the seeds file and seed the database with the initial values](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/2998f381bef1e6509b0e622bc35c9a5abb662197/db/seeds.sql)
+
+    • In the `terminal`, navigate to the project directory where you cloned the sources, and run `npm start`
+    
+    • After you admire the super duper cool 'splash screen', follow the prompts 
 
     • Select `exit` or press `control+c` to close the application
 
@@ -88,41 +96,57 @@ Users or contributors can run the application locally or in a hosted environment
     
     After the application makes a successful connection to the database and is running in the command line, you can select an option from the list to view or update the database:
 
+    **main menu**
+
+    *Expected behavior:* After running `npm start` in  the command line, the user should be presented with the [the super duper cool 'splash screen'!!!](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/01-splashscreen.png) and the application's [main menu](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/02-mainmenu.png)
+
     **view all departments**
 
-    *Expected behavior*: The note will be saved and displayed in the list on the right of the screen.
+    *Expected behavior:* Select `view all departments` and you will be presented with the [default departments](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/03-viewalldepartments.png) inserted into the database.
 
     **view all roles**
     
-    *Expected behavior*: The note will be saved and displayed in the list on the left of the screen.
+    *Expected behavior:* Select `view all roles` and you will be presented with the [default roles](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/04-viewallroles.png) inserted into the database.
 
     **view all employees**
-    *Expected behavior*: The note will be saved and displayed in the list on the left of the screen.
+    
+    *Expected behavior:* Select `view all employees` and you will be presented with the [default roles](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/05-viewallemployees.png) inserted into the database.
 
     **add a new department**
-    *Expected behavior*: The note will be saved and displayed in the list on the left of the screen.
+    
+    *Expected behavior:* Select `add department` and you [prompted for the department name](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/06-addadepartment-INTERNS.png), after pressing enter the new department will be added to the database [intern department inserted into the database](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/07-adddepartment-RESULT.png).
 
     **add a new role**
-    *Expected behavior*: The note will be saved and displayed in the list on the left of the screen.
 
-    **add a new employee**
-    *Expected behavior*: The note will be saved and displayed in the list on the left of the screen.
+    *Expected behavior:* Select `add role` and you [prompted for the new role's name, salary and department id](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/08-addarole.png), after entering the data for the  new role, it will be added to the database [social media manager role, salary and id inserted into the database](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/09-addarole-RESULT.png).
+
+    **add an employee**
+
+    *Expected behavior:* Select `add an employee` and you [prompted for the employee's first name, last name, the role number, and manager id](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/10-addemployee.png), after entering the data for the  new role, it will be added to the database [new employee "Linda Ronstadt" added to the database](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/11-addemployee-RESULT.png).
 
     **update an employee's role**
-    *Expected behavior*: The note will be saved and displayed in the list on the left of the screen.
+
+    *Expected behavior:* Select `update an employee role` and you [prompted for the employee's first name and new role number](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/12-updateemployeerole.png), after entering the data for the  new role, it will be added to the database [employee Linda Ronstadt, formerly an Auditor, is now a Studio Engineer ](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/13-updateemployeerole-RESULT.png).
 
     **remove an employee from the database**
-    *Expected behavior*: The note will be saved and displayed in the list on the left of the screen.
+
+    *Expected behavior:* Select `remove an employee from the database` and you [presented with a list of current employees](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/14-removeemployee.png), after selecting the employee to remove, the employee will be removed from the database [the employee "Mary J. Blige" has been removed from the database](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/15-removeemployee-RESULT.png).
 
     **exit the application**
-    *Expected behavior*: The note will be saved and displayed in the list on the left of the screen.
+
+    *Expected behavior:* [Select 'exit'](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/16-exit.png), after pressing "enter" the connection to the database will be closed and [the application will stop running](https://github.com/thoughtsinbuttermilk/12-ModuleChallenge-EmployeeTracker-sambailey/blob/04deb8b68ffc4cd68f7a3bdaffdf72119340cec2/assets/17-exit-RESULT.png).
 
 
-    *Known issues*
-    • When editing an existing note, the "write" icon does not appear in the upper right corner of the application window. This issue is cosmetic, notes can still be edited by placing the cursor in the title or text fields and pressing the "save" icon. This issue needs be investigated, I need to more closely examine the starter code for the front-end, and addressed in the 1.v1 release of the application.
+    ***Known issues***
 
-    • After editing a note, the original text will display in the main window. I believe I need to add a `e.stopPropagation();` method to resolve this issue. It will be addressed in the 1.v1 release of the application.
-xw
+    • When the application starts, the first message displayed in the console is duplicated.
+    
+    • Fields which require numeric values are not being validated; the application will throw if a non-numeric value is entered.
+    
+    • More generally, new data entered into the database is not validated.
+    
+    • I have only enabled support for the `delete employee` feature listed in the project "bonus" section; the other "bonus" features have not been implemented.
+
     </details>
 
 ## Testing
