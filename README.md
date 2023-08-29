@@ -155,7 +155,7 @@ The 1.0 version of this application does not have any unit tests.
 ## Video walkthrough
 
 
-Please see [this video](hhttps://drive.google.com/file/d/1-Y6Jux-_2rikyk2s2DbqWJxlQY6lQGKf/view?usp=sharing) for a demonstration of running the application and using the features.
+Please see [this video](https://drive.google.com/file/d/1-Y6Jux-_2rikyk2s2DbqWJxlQY6lQGKf/view?usp=sharing) for a demonstration of running the application and using the features.
 
 ## Credits and notes for the graders
 
